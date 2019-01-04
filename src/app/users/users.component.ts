@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { USERS } from '../mock-user';
-import { UserService } from '../user.service';
-
+import { UserService } from '../user.service';  
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -19,7 +18,14 @@ export class UsersComponent implements OnInit {
     // console.log('hello');
     name = name.trim();
     if (!name) { return; }
-  // this.USERS.push(name);
-    console.log(name);
+  USERS.push(name);
+  localStorage['name'] = name;
+  localStorage.setItem( name, JSON.stringify(USERS));
+  console.log(name);
+  var retrievedData = localStorage.getItem(name);
+  var movies2 = JSON.parse(retrievedData);
+ 
+//making sure it still is an array
+// alert(retrievedData);
   }
 }
