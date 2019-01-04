@@ -1,0 +1,26 @@
+<h1 class="center">Todo</h1>
+<div class = "adduser">
+  <label>User name:
+    <input #name placehoder = 'name'/>
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(name.value); name.value=''">
+    add
+  </button>
+</div>
+
+ 
+<ul class="users">
+  <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="5" >
+    <ng-container *cdkVirtualFor="let user of users">
+      
+        <li>
+          <span class="badge">{{user.name}}</span> 
+        </li>
+    
+         <!-- <button class="delete" title="delete "
+        (click)="remove(item)">x</button> -->
+         
+    </ng-container>
+  </cdk-virtual-scroll-viewport>
+</ul>
