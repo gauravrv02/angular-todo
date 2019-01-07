@@ -1,0 +1,35 @@
+import { User } from './user';
+import { StorageServiceModule } from 'angular-webstorage-service';
+
+export const USERS: User[] = [
+  {  name: 'Mr. Nice' },
+  {  name: 'Narco' },
+  {  name: 'Bombasto' },
+  {  name: 'Celeritas' },
+  {  name: 'Magneta' },
+  {  name: 'RubberMan' },
+  {  name: 'Dynama' },
+  {  name: 'Dr IQ' },
+  {  name: 'Magma' },
+  {  name: 'Tornado' },
+  {  name: 'Mr. Nice' },
+  {  name: 'Narco' },
+  {  name: 'Bombasto' },
+  {  name: 'Celeritas' },
+  {  name: 'Magneta' },
+  {  name: 'RubberMan' },
+  {  name: 'Dynama' },
+  {  name: 'Dr IQ' },
+  {  name: 'Magma' },
+  {  name: 'Tornado' },
+  {  name: 'Mr. Nice' },
+  {  name: 'Narco' },
+  {  name: 'Bombasto' },
+  {  name: 'Celeritas' },
+  {  name: 'Magneta' },
+  {  name: 'RubberMan' },
+  {  name: 'Dynama' },
+  {  name: 'Dr IQ' },
+  {  name: 'Magma' },
+  {  name: 'Tornado' }
+];

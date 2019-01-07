@@ -7,8 +7,7 @@ import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule }    from '@angular/forms';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+
 import { StorageServiceModule } from 'angular-webstorage-service';
 
 
@@ -24,9 +23,6 @@ import { StorageServiceModule } from 'angular-webstorage-service';
     FormsModule,
     StorageServiceModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
   ],
   providers: [],
   bootstrap: [AppComponent]
