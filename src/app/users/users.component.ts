@@ -1,46 +1,69 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit}from '@angular/core';
 import { User } from '../user';
 import { USERS } from '../mock-user';
-import { UserService } from '../user.service';  
+// import { UserService } from '../user.service';  
 import { Observable } from 'rxjs';
-import { LocalStorage, JSONSchema } from '@ngx-pwa/local-storage';
-import { switchMap } from 'rxjs/operators';
-
-
+import { stringify } from 'querystring';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  users = USERS;
-    constructor(private localstorage: LocalStorage) {
+    // user : User;
+    users = USERS;  
     
+    constructor() {
    }
-  ngOnInit() {}
-  add(name: User): void {
-//     var oldItems = JSON.parse(localStorage.getItem('USERS')) || [];
+  ngOnInit() {
+  }
+  adduser(newUser : string):void {
+    var user = new User(); 
+     if (!newUser) { return; }
+    user.name = newUser;
+    // console.log(this.user.name);
+    this.users.push(user);   
+        // var oldItems = JSON.parse(localStorage.getItem('USERS')) || [];
+        // oldItems.push(user);
+        console.log(this.users); 
+        // JSON.parse(localStorage.getItem('oldItems'));
+        // console.log(JSON.parse(localStorage.getItem('USERS')));
+    //    USERS.push(newItem);
+    //    console.log(USERS);
+}
+  removeuser(index : number): void {
+   // this.users = this.users.filter(h => h !== user );
+    this.users.splice(index,1);
+    console.log(this.users);
     
-//     var newItem = {
-//         'product-name': name,
-//     };
-    
-//     oldItems.push(newItem);
-    
-//     localStorage.setItem('USERS', JSON.stringify(oldItems));
-// };
-
-console.log(JSON.parse(localStorage.getItem('USERS')));
-    
-  USERS.push(name);
-  localStorage.setItem('USERS', JSON.stringify(USERS));
-  localStorage['name'] = name;
-  localStorage.setItem( name, JSON.stringify(USERS));
-  console.log(name);
-  var retrievedData = localStorage.getItem(name);
-  var movies2 = JSON.parse(retrievedData);
- 
-//making sure it still is an array
-// alert(retrievedData);
+  //return this;
   }
 }
+    //var obj = new User()
+    // if (!name) { return; } 
+    // 
+    // var newItem = {
+    //      'name': name,
+    // };
+    // oldItems.push(newItem);
+    //  localStorage.setItem('newItem', JSON.stringify(USERS));
+
+    //   JSON.parse(localStorage.getItem('oldItems'));
+
+    //   console.log(JSON.parse(localStorage.getItem('USERS')));
+// };
+    
+// obj.name = name;
+// var oldItems = JSON.parse(localStorage.getItem('USERS')) || [];  
+//   USERS.push(obj);
+//   localStorage.setItem('USERS', JSON.stringify(USERS));
+//   //localStorage.setItem( oldItems, JSON.stringify(USERS));
+//   //console.log(name);
+//   var retrievedData = localStorage.getItem(oldItems);
+//   var movies2 = JSON.parse(retrievedData);
+
+//    console.log(JSON.parse(localStorage.getItem('USERS')));
+   
+// //making sure itstill is an array
+// // alert(retrievedData);/ 
+//

@@ -1,10 +1,32 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import { Injectable } from '@angular/core';
+// import {User} from './user';
+// import {USERS} from './mock-user';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class UserService {
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class UserService {
 
-  constructor(  private http: HttpClient) { }
-}
+//   user : USERS;
+//   // lastid : number  = 0;
+
+//    //adding user in the list
+
+//     adduser(user : User) {  
+//     if(user.name!) {
+//       return ;
+//     }
+//     this.USERS.push(user);
+//     console.log(user);
+//     return this;
+//   }
+//   //delete user
+//   // deleteuser(id: number) {
+//   //   this.users = this.users
+//   //    // .filter(todo => user.id !== id);
+//   //   return this;
+//   // }
+
+
+// }
+

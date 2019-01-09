@@ -1,14 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule }    from '@angular/common/http';
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { FormsModule }    from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import { StorageServiceModule } from 'angular-webstorage-service';
 
 
 @NgModule({
@@ -19,10 +16,9 @@ import { StorageServiceModule } from 'angular-webstorage-service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ScrollingModule,
     FormsModule,
-    StorageServiceModule,
-    HttpClientModule,
+    ReactiveFormsModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

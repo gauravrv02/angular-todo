@@ -1,26 +1,37 @@
-<h1 class="center">Todo</h1>
-<div class = "adduser">
-  <label>User name:
-    <input #name placehoder = 'name'/>
-  </label>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(name.value); name.value=''">
-    add
-  </button>
+<h1>Todo</h1>
+<div class = "container">
+        <!-- <div class="form-group">
+            <input #username placeholder="Add username"  (keyup.enter)="adduser(userName); userName=' '"/>
+            <button (click)="adduser(userName); userName =''">
+                    add
+                </button>
+        </div> -->
+        <div>
+                <label>
+                  <input #username class ="adduser" placeholder = "Add username"/>
+                </label>
+                <!-- (click) passes input value to add() and then clears the input -->
+                <button (click)="adduser(username.value);username.value=''">
+                  add
+                </button>
+              </div>
+      <div >
+          <div class =" head">Users List</div>
+    <ul class = "list">
+            <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="10" >
+                    <ng-container *cdkVirtualFor="let user of users; let i = index">
+       <li class = "users" >
+         {{i+1}}.{{user.name}}
+          <button class="destroy" (click)="removeuser(i)">X</button>
+         </li>
+       </ng-container>
+    </cdk-virtual-scroll-viewport>
+    </ul>
 </div>
-
- 
-<ul class="users">
-  <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="5" >
-    <ng-container *cdkVirtualFor="let user of users">
-      
-        <li>
-          <span class="badge">{{user.name}}</span> 
-        </li>
-    
-         <!-- <button class="delete" title="delete "
-        (click)="remove(item)">x</button> -->
-         
-    </ng-container>
-  </cdk-virtual-scroll-viewport>
-</ul>
+</div>
+<!-- <ul class="list">
+        <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="90" >
+          <ng-container *cdkVirtualFor="let n of numbers">
+            <li class="list-item"> {{n}} </li>
+          
+      </ul> -->

@@ -1,9 +1,8 @@
 import { User } from './user';
-import { StorageServiceModule } from 'angular-webstorage-service';
 
 export const USERS: User[] = [
-  {  name: 'Mr. Nice' },
-  {  name: 'Narco' },
+  {  name: 'Mr. Nice'},
+  {  name: 'Narco'},
   {  name: 'Bombasto' },
   {  name: 'Celeritas' },
   {  name: 'Magneta' },
@@ -16,6 +15,10 @@ export const USERS: User[] = [
   {  name: 'Narco' },
   {  name: 'Bombasto' },
   {  name: 'Celeritas' },
+  {  name: 'Mr. Nice'},
+  {  name: 'Narco'},
+  {  name: 'Bombasto' },
+  {  name: 'Celeritas' },
   {  name: 'Magneta' },
   {  name: 'RubberMan' },
   {  name: 'Dynama' },
@@ -26,10 +29,19 @@ export const USERS: User[] = [
   {  name: 'Narco' },
   {  name: 'Bombasto' },
   {  name: 'Celeritas' },
+  {  name: 'Celeritas' },
+  {  name: 'Mr. Nice'},
+  {  name: 'Narco'},
+  {  name: 'Bombasto' },
+  {  name: 'Celeritas' },
   {  name: 'Magneta' },
   {  name: 'RubberMan' },
   {  name: 'Dynama' },
   {  name: 'Dr IQ' },
   {  name: 'Magma' },
-  {  name: 'Tornado' }
+  {  name: 'Tornado' },
+  {  name: 'Mr. Nice' },
+  {  name: 'Narco' },
+  {  name: 'Bombasto' },
 ];
+
