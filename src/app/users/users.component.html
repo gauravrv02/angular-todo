@@ -5,9 +5,9 @@
                   <input #username class ="adduser" placeholder = "Add username" (keyup.enter) = "adduser(username.value);username.value=''"/>
                 </label>
                 <!-- (click) passes input value to add() and then clears the input -->
-                <!-- <button class = "add"(click)="adduser(username.value);username.value=''">
+                <button class = "add"(click)="adduser(username.value);username.value=''">
                   add
-                </button> -->
+                </button>
               </div>
     <div class = "list">
       
@@ -18,7 +18,7 @@
        <div class = "users" *ngFor="let user of users; let j = index" >    
         <div class ="index">
             <span style="font-size: 16px;">
-            <i class="fa fa-exclamation-circle"></i>
+            <i class="fa fa-exclamation-circle color:red"></i>
           </span>
           {{j+1}}.
           <br>

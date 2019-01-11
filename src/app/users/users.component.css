@@ -6,7 +6,7 @@
 .adduser{
  align-items: center;
  text-align: center;  
- width : 45%;
+ width : 38%;
  height : 30px;
  font-size: 20px;
  font-family: 'Times New Roman', Times, serif;
@@ -83,7 +83,7 @@ h1{
     margin-top: 1px;
     margin-left:2%;
 }
-/* 
+
 .add{
     height: 36px;
     width: 8%;
@@ -92,19 +92,21 @@ h1{
 }
 
 .add:hover{
-    background-color: blue;
-} */
+    background-color: green;
+}
 
 .list{
     
     width:74%;   
     line-height: 4px;    
 }
-
+/* 
 .adduser:hover{
     background-color:grey;
+} */
+.fa-exclamation-circle{
+    color: red;
 }
-
 .user-list{
     width: 80%;
     border-style:solid;
