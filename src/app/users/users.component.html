@@ -15,13 +15,17 @@
                     <ng-container *cdkVirtual> -->
       <div class ="user-list">
           <div class =" head">Users List</div>
-       <div class = "users" *ngFor="let user of users; let j = index" >
-          <span style="font-size: 20px; line-height: 12px;">
-              <i class="fas fa-exclamation-circle"></i>
-            </span>
-          <br><br><br>
-         {{j+1}}.
-         <br><br><br>{{user.name}}
+       <div class = "users" *ngFor="let user of users; let j = index" >    
+        <div class ="index">
+            <span style="font-size: 16px;">
+            <i class="fa fa-exclamation-circle"></i>
+          </span>
+          {{j+1}}.
+          <br>
+        
+         <br>
+         {{user.name}}
+         </div>
           <button class="destroy" (click)="removeuser(i)">x</button>
           </div>
         </div> 
@@ -30,5 +34,6 @@
     
   </div>
 </div>
+
 
 
