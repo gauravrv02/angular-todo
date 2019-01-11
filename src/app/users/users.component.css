@@ -2,7 +2,18 @@
     background-color: aqua;
     text-align: center;
 }
-
+#counter{
+     width: 12%;
+     height: 30px;
+     display: inline-block;
+     margin-bottom: 15px;
+     font-size:20px;
+     border-style:bold;
+     border-color:black;
+}
+.header{
+    display:inline;
+}
 .adduser{
  align-items: center;
  text-align: center;  
@@ -91,9 +102,9 @@ h1{
     border-radius: 5px;
 }
 
-.add:hover{
+/* .add:hover{
     background-color: green;
-}
+} */
 
 .list{
     
@@ -115,9 +126,6 @@ h1{
     margin-left: 25%;
     border-bottom-style: none;
     border-top-style: none;
-}
-.user:hover{
-    background-color: aqua;
 }
 /* .destroy:hover{
     background-color: red;
