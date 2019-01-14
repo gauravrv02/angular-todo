@@ -1,14 +1,18 @@
 <h1>Todo</h1>
 <div class = "container">
+  <div class ="info">
+    <label class= "counter">{{users.length}}</label>
+             <label class="selected"> {{totalSelected}}</label>
+              <label class ="left"> {{users.length - totalSelected }}</label>
+  </div>  
+    <br><br><br>
         <div class = "header" >
                 <label>
-                    <div #counter style="display: block;border-color: black;border-style: 
-                    solid;margin-top: 0%;width: 6%;text-align: center">{{users.length}}</div>  
                   <input #username class ="adduser" placeholder = "Add username" (keyup.enter) = "adduser(username.value);username.value=''"/>
                 </label>
                 <!-- (click) passes input value to add() and then clears the input -->
                 <button class = "add"(click)="adduser(username.value);username.value=''">
-                  add
+                  Add
                 </button>
               </div>
     <div class = "list">
@@ -16,18 +20,23 @@
                     <ng-container *cdkVirtual> -->
       <div class ="user-list">
           <div class =" head">Users List</div>
-       <div class = "users" *ngFor="let user of users; let j = index" >    
+       <div class = "users" *ngFor="let user of users; let j = index" >  
+          <input type="checkbox" style ="font-size: 16px;"class ="check"(change) = "updateTotal(user)">   
         <div class ="index">
+            <!-- <input type ="checkbox"> -->
+
             <span style="font-size: 16px;">
+              
             <i class="fa fa-exclamation-circle color:red"></i>
           </span>
           {{j+1}}.
           <br>
         
          <br>
-         {{user.name}}
+         <div class ="name">
+         {{user.name}}</div>
          </div>
-          <button class="destroy" (click)="removeuser(i)">x</button>
+          <button class="destroy" (click)="removeuser(user,i)">x</button>
           </div>
         </div> 
        <!-- </ng-container>
