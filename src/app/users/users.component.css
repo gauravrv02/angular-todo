@@ -7,36 +7,28 @@
 
 }
 .counter{
-    display: inline-block;
     margin-left: 20%;
     text-align: center;
      width: 5%;
-     border-style:solid;
-     border-color:black;
-     margin-left: 20%;
+     margin-left: 27%;
      font-size: 20px;
      height: 26px;
-     margin-bottom: -9px;
+   
 }
 .selected{
     width: 5%;
     text-align: center;
-    display: inline-block;
-    border-style: solid;
-    border-color:black;
     font-size: 20px;
     height: 26px;
     margin-left:20%;
-    margin-bottom: -9px;
+    
 
 }
 
 .left{
-    display: inline-block;
+    
     text-align: center;
     width: 5%;
-    border-style:solid;
-    border-color: black;
     font-size: 20px;
     height:26px;
     margin-left:20%;
@@ -45,24 +37,25 @@
 .header{
     display:inline;
 }
+.input{
+    width: 62%;
+    margin-left:19%;
+}
 .adduser{
  align-items: center;
  text-align: center;  
- width : 38%;
+ width : 86%;
  height : 30px;
  font-size: 20px;
  font-family: 'Times New Roman', Times, serif;
  border-style:hidden;
- border-bottom-style:solid;
- border-width: thin;
- border-radius: 0px;
- margin-bottom: 15px;
- margin-left: 26%;
+
 }
 .check{
     margin-right: 2%;
     float: left;
     margin-top: 5%;
+  
 }
 .name{
     margin-left: 5%;
@@ -106,6 +99,7 @@ h1{
     font-weight: 300;
     border-bottom-style:groove; 
     border-width: thin;
+    overflow: hidden;
 }
 
 .form-group{
@@ -139,11 +133,7 @@ h1{
 .add{
     height: 36px;
     width: 8%;
-    margin-left: 3%;
-    border-radius: 5px;
-    background-color: #428bca;
-    color: white;
-    border-color: #357ebd;
+    
 }
 
 /* .add:hover{
@@ -170,6 +160,7 @@ h1{
     margin-left: 25%;
     border-bottom-style: none;
     border-top-style: none;
+    border-collapse: collapse;
 }
 /* .destroy:hover{
     background-color: red;

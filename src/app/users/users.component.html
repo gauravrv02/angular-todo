@@ -1,47 +1,43 @@
 <h1>Todo</h1>
 <div class = "container">
   <div class ="info">
-    <label class= "counter">{{users.length}}</label>
-             <label class="selected"> {{totalSelected}}</label>
-              <label class ="left"> {{users.length - totalSelected }}</label>
+      <span class="counter" matBadge="" matBadgeOverlap="false">{{users.length}}</span>
+      <span class ="selected"matBadge="" matBadgeOverlap="false">{{totalSelected}}</span>
+      <span class = "left"matBadge="" matBadgeOverlap="false">{{users.length - totalSelected }}</span>
   </div>  
     <br><br><br>
         <div class = "header" >
-                <label>
-                  <input #username class ="adduser" placeholder = "Add username" (keyup.enter) = "adduser(username.value);username.value=''"/>
-                </label>
+                <mat-form-field class="input">
+                    <input  #username class ="adduser" matInput placeholder = " " (keyup.enter) = "adduser(username.value); username.value=''"/>
+                      <button class ="add" mat-raised-button color="primary" (click)="adduser(username.value);username.value = ''">
+                        Add
+                      </button>
+                </mat-form-field>
                 <!-- (click) passes input value to add() and then clears the input -->
-                <button class = "add"(click)="adduser(username.value);username.value=''">
-                  Add
-                </button>
               </div>
     <div class = "list">
             <!-- <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="10" >
                     <ng-container *cdkVirtual> -->
-      <div class ="user-list">
-          <div class =" head">Users List</div>
+      <mat-card class ="user-list">
+          <mat-card-title class ="head">Users List</mat-card-title>
        <div class = "users" *ngFor="let user of users; let j = index" >  
-          <input type="checkbox" style ="font-size: 16px;"class ="check"(change) = "updateTotal(user)">   
+          <mat-checkbox class ="check" (change) = "updateTotal(user)"></mat-checkbox>   
         <div class ="index">
             <!-- <input type ="checkbox"> -->
-
             <span style="font-size: 16px;">
-              
             <i class="fa fa-exclamation-circle color:red"></i>
           </span>
           {{j+1}}.
           <br>
-        
          <br>
          <div class ="name">
          {{user.name}}</div>
          </div>
-          <button class="destroy" (click)="removeuser(user,i)">x</button>
+          <button class="destroy" mat-basic-button color="primary" (click)="removeuser(user,i)">x</button>
           </div>
-        </div> 
+      </mat-card> 
        <!-- </ng-container>
     </cdk-virtual-scroll-viewport> -->
-    
   </div>
 </div>
 
