@@ -10,27 +10,27 @@
       <mat-card-header class="login_head">
           <mat-card-title>Login</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class ="boxes">
           <div [formGroup] = "loginForm" (ngSubmit)="onSubmit()">
               <div class="form-group">
             <table class="example-full-width" cellspacing="0">
-              <tr class = "row"> 
+              <tr> 
                 <td >
                    <mat-form-field class="example-full-width" > 
-                     <input matInput placeholder="E-mail" formControlName= "email"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                     <input matInput placeholder="E-mail" formControlName= "email" autocomplete ="off" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                        <div *ngIf="f.email.errors.required">E-mail is required</div>
-                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        <!-- <div *ngIf="f.email.errors.required">E-mail is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div> -->
                     </div>
                 </mat-form-field>
                 </td>
               </tr>
-              <tr class = "row">
+              <tr>
               <td><mat-form-field class="example-full-width">
-                <input matInput placeholder="Password" type ="password" formControlName="password" class= "form-control"[ngClass]= "{ 'is-invalid': submitted && f.password.errors }">
+                <input matInput placeholder="Password" type ="password" autocomplete = "off" formControlName="password" class= "form-control"[ngClass]= "{ 'is-invalid': submitted && f.password.errors }">
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                      <div *ngIf="f.password.errors.required">Password is required</div>
-                      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                      <!-- <div *ngIf="f.password.errors.required">Password is required</div>
+                      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div> -->
                       </div>
               </mat-form-field>
             </td>

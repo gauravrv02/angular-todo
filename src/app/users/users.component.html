@@ -1,4 +1,23 @@
-<h1>Todo</h1>
+<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
+ <div class ="tool">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <nav class ="nav">
+        <a  routerLink="/user" routerLinkActive="['active-link']">User</a>
+        <a class = 'link' routerLink="/highchart"  [routerLinkActive]="['is-active']">HighChart</a>
+      </nav>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+<div class ='file'>
+    <div class="upload-btn-wrapper">
+        <!-- <button class="btn">+</button> -->
+        <button mat-fab color="primary">+</button>
+        <input type="file" name (change) = "onFileChange($event)" multiple =false/>
+      </div>
+     
+ 
+</div>
 <div class = "container">
   <div class ="info">
       <span class="counter" matBadge="" matBadgeOverlap="false">{{users.length}}</span>
@@ -9,7 +28,7 @@
         <div class = "header" >
                 <mat-form-field class="input">
                     <input  #username class ="adduser" matInput placeholder = " " (keyup.enter) = "adduser(username.value); username.value=''"/>
-                      <button class ="add" mat-raised-button color="primary" (click)="adduser(username.value);username.value = ''">
+                      <button class ="add" mat-raised-button color= "primary" (click)="adduser(username.value);username.value = ''">
                         Add
                       </button>
                 </mat-form-field>
@@ -20,7 +39,8 @@
                     <ng-container *cdkVirtual> -->
       <mat-card class ="user-list">
           <mat-card-title class ="head">Users List</mat-card-title>
-       <div class = "users" *ngFor="let user of users; let j = index" >  
+          <div class ="lista">
+       <div class = "users" *ngFor="let user of users; let j = index" [class.highlighted]="user.checked === true" >  
           <mat-checkbox class ="check" (change) = "updateTotal(user)"></mat-checkbox>   
         <div class ="index">
             <!-- <input type ="checkbox"> -->
@@ -30,16 +50,22 @@
           {{j+1}}.
           <br>
          <br>
-         <div class ="name">
+         <div class ="name" >
          {{user.name}}</div>
          </div>
           <button class="destroy" mat-basic-button color="primary" (click)="removeuser(user,i)">x</button>
           </div>
+          </div>
       </mat-card> 
        <!-- </ng-container>
     </cdk-virtual-scroll-viewport> -->
-  </div>
-</div>
-
+	<!-- <table class="sjs-table">
+		<tr *ngFor="let row of data">
+			<td *ngFor="let val of row">
+				{{val}}
+			</td>
+		</tr>
+	</table> -->
+	<!-- <button (click)="export()">Export!</button> -->
 
 
