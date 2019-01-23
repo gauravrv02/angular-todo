@@ -117,9 +117,6 @@ h1{
     margin-left: 20%;
     margin-right: 20%;
 }
-.active { 
-    background-color: red;
- }
  .upload-btn-wrapper {
     position: relative;
     overflow: hidden;
@@ -165,16 +162,20 @@ h1{
     margin-top: 1px;
     margin-left:2%;
 }
-
 .add{
     height: 36px;
     width: 8%;
     
 }
 .link{
-    padding: 20%;
+    padding: 10%;
     color: white;
     text-decoration: none;
+}
+nav a.active{
+    color: black;
+    text-decoration: none;
+    background-color: none;
 }
 .list{
     
