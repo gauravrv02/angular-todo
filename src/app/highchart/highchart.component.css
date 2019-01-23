@@ -3,3 +3,9 @@
     color: white;
     text-decoration: none;
 }
+.main{
+    width: 60%;
+    height: 300px;
+    margin-left: 20%;
+    margin-top: 10px;
+}

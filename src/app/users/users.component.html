@@ -38,6 +38,7 @@
             <!-- <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="10" >
                     <ng-container *cdkVirtual> -->
       <mat-card class ="user-list">
+          <mat-checkbox class ="checkall" (change) = "updateall()">select all</mat-checkbox>
           <mat-card-title class ="head">Users List</mat-card-title>
           <div class ="lista">
        <div class = "users" *ngFor="let user of users; let j = index" [class.highlighted]= "user.checked === true" >  

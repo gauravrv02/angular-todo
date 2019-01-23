@@ -54,8 +54,7 @@ export class HighchartComponent implements OnInit {
           borderWidth: 0
       }
   },
-    series: [
-      { 
+    series: [ {
         name : 'complete',
         data : this.getdata(),
       },

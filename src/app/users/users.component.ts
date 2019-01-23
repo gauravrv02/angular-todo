@@ -126,4 +126,18 @@ export class UsersComponent implements OnInit {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
   }
+  updateall(): void {
+      if (this.totalSelected !== this.users.length) {
+        this.totalSelected = 0;
+        for (let i = 0; i < this.users.length; i++) {
+        this.users[i].checked = true;
+        this.totalSelected++;
+        }
+      } else {
+        for (let i = 0; i < this.users.length; i++) {
+          this.users[i].checked = false;
+          this.totalSelected--;
+        }
+    }
+  }
 }
