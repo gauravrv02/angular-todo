@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
+import { UserService } from '../user.service';
 import { USERS } from '../mock-user';
 import { Router } from '@angular/router';
 import * as XLSX from 'xlsx';
@@ -13,16 +14,16 @@ type AOA = any[][];
 export class UsersComponent implements OnInit {
   // user : User;
   // form: FormControl;
-
+  // date: Date;
   wb: XLSX.WorkBook = XLSX.read('./username100.xls');
   arr: string[];
   users = USERS;
   totalSelected = 0;
   data: AOA = [[1, 2], [3, 4]];
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
-  fileName: string = 'username100.xls';
+  // fileName: string = 'username100.xls';
   formattedData: any;
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService) {
   }
   ngOnInit() {
     this.formattedData = {};
@@ -33,14 +34,18 @@ export class UsersComponent implements OnInit {
     const user = new User();
     if (!newUser) { return; }
     user.name = newUser;
+    user.date = new Date();
     user.checked = false;
+    user.month = Math.floor((Math.random() * 12) + 1);
     this.users.push(user);
+    console.log(user.date);
   }
   // remove element from list
   removeuser(user: User, index: number): void {
+    console.log(user , index);
     if (user.checked === true) {
-      user.checked = false;
-      this.totalSelected--;
+        user.checked = false;
+        this.totalSelected--;
     }
     this.users.splice(index, 1);
   }
@@ -89,8 +94,10 @@ export class UsersComponent implements OnInit {
     header.push(...this.data[0]);
     this.formattedData = [];
     for (let i = 1; i < this.data.length; i++) {
-      let name1: string = String(this.data[i][2]);
-      this.users.push({name: name1, checked: false});
+      const name1: string = String(this.data[i][2]);
+      const comp = this.data[i][3];
+      // this.users.push({name: name1, checked: false, date: new Date()});
+      USERS.push({name: name1, checked: false, date: new Date(), month: comp});
       this.formattedData.push({
           'index': this.data[i][0],
           'title': this.data[i][1],

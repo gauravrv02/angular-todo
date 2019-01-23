@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+import { UserService } from '../user.service';
+import { USERS } from '../mock-user';
 
 @Component({
   selector: 'app-highchart',
@@ -7,7 +9,8 @@ import { Chart } from 'angular-highcharts';
   styleUrls: ['./highchart.component.sass', './highchart.component.css']
 })
 export class HighchartComponent implements OnInit {
-  series: any[];
+ // series: any[];
+ users = USERS;
   chart = new Chart( {
     chart: {
       type: 'column'
@@ -47,15 +50,21 @@ export class HighchartComponent implements OnInit {
           borderWidth: 0
       }
   },
-    series: [
-      {
-    data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-  }
-]
+    series: [],
   });
   // add point to chart serie
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+  }
+  getdata(): void {
+    let arr =  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for (let i = 1; i < USERS.length; i++) {
+        arr[USERS[i].month] += 1;
+    }
+    for (let j = 2; j < 13; j++) {
+        arr[j] +=  arr[j - 1];
+    }
+    console.log(arr);
   }
     }

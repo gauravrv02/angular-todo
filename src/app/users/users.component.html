@@ -13,7 +13,7 @@
     <div class="upload-btn-wrapper">
         <!-- <button class="btn">+</button> -->
         <button mat-fab color="primary">+</button>
-        <input type="file" name (change) = "onFileChange($event)" multiple =false/>
+        <input type="file" name (change) = "onFileChange($event)" />
       </div>
      
  
@@ -40,7 +40,7 @@
       <mat-card class ="user-list">
           <mat-card-title class ="head">Users List</mat-card-title>
           <div class ="lista">
-       <div class = "users" *ngFor="let user of users; let j = index" [class.highlighted]="user.checked === true" >  
+       <div class = "users" *ngFor="let user of users; let j = index" [class.highlighted]= "user.checked === true" >  
           <mat-checkbox class ="check" (change) = "updateTotal(user)"></mat-checkbox>   
         <div class ="index">
             <!-- <input type ="checkbox"> -->
@@ -53,7 +53,7 @@
          <div class ="name" >
          {{user.name}}</div>
          </div>
-          <button class="destroy" mat-basic-button color="primary" (click)="removeuser(user,i)">x</button>
+          <button class="destroy" mat-basic-button color="primary" (click)="removeuser(user,j)">x</button>
           </div>
           </div>
       </mat-card> 

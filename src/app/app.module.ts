@@ -11,6 +11,7 @@ import {MatButtonModule, MatProgressSpinnerModule, MatCheckboxModule, MatCardMod
 import { LoginComponent } from './login/login.component';
 import { HighchartComponent } from './highchart/highchart.component';
 import { ChartModule } from 'angular-highcharts';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
