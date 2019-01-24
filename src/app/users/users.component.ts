@@ -12,16 +12,13 @@ type AOA = any[][];
 })
 
 export class UsersComponent implements OnInit {
-  // user : User;
-  // form: FormControl;
-  // date: Date;
   wb: XLSX.WorkBook = XLSX.read('./username100.xls');
   arr: string[];
   users = USERS;
   totalSelected = 0;
   data: AOA = [[1, 2], [3, 4]];
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
-  // fileName: string = 'username100.xls';
+
   formattedData: any;
   constructor(private router: Router, private userService: UserService) {
   }
@@ -38,11 +35,11 @@ export class UsersComponent implements OnInit {
     user.checked = false;
     user.month = Math.floor((Math.random() * 12) + 1);
     this.users.push(user);
-    console.log(user.date);
+    // console.log(user.date);
   }
   // remove element from list
   removeuser(user: User, index: number): void {
-    console.log(user , index);
+    // console.log(user , index);
     if (user.checked === true) {
         user.checked = false;
         this.totalSelected--;
@@ -57,7 +54,7 @@ export class UsersComponent implements OnInit {
       user.checked = false;
       this.totalSelected--;
     }
-    console.log(user);
+    // console.log(user);
   }
   /**
    * upload file to display in list
@@ -114,7 +111,7 @@ export class UsersComponent implements OnInit {
       //       this.users.push(this.formattedData.name[j]);
       // }
     }
-    console.log('formatted Data', this.formattedData);
+    // console.log('formatted Data', this.formattedData);
   }
   /**
    * export to json file
@@ -126,6 +123,9 @@ export class UsersComponent implements OnInit {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
   }
+  /**
+   * check all
+   */
   updateall(): void {
       if (this.totalSelected !== this.users.length) {
         this.totalSelected = 0;

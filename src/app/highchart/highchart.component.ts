@@ -57,10 +57,12 @@ export class HighchartComponent implements OnInit {
     series: [ {
         name : 'complete',
         data : this.getdata(),
+        type: undefined
       },
       {
         name : 'uncomplete',
         data :  this.getdata1(),
+        type: undefined
       }
     ],
   });
@@ -69,6 +71,9 @@ export class HighchartComponent implements OnInit {
 
   ngOnInit() {
   }
+  /**
+   * getdata function for complete list
+   */
   getdata() {
     for (let i = 0; i < USERS.length; i++) {
         this.arr[USERS[i].month - 1] += 1;
@@ -78,6 +83,9 @@ export class HighchartComponent implements OnInit {
     }
     return this.arr;
   }
+  /**
+   * get data for uncomplete task
+   */
   getdata1() {
     for (let i = 0; i < USERS.length; i++) {
         this.arr1[USERS[i].month - 1] += 1;

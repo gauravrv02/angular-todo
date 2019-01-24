@@ -1,16 +1,6 @@
-.link{
-    padding: 10%;
-    color: white;
-    text-decoration: none;
-}
 .main{
     width: 60%;
     height: 300px;
     margin-left: 20%;
     margin-top: 10px;
-}
-nav a.active{
-    color: black;
-    text-decoration: none;
-    background-color: none;
 }
