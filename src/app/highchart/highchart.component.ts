@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { UserService } from '../user.service';
 import { USERS } from '../mock-user';
-import { getTreeNoValidDataSourceError } from '@angular/cdk/tree';
-import { useAnimation } from '@angular/animations';
+import * as Highcharts from 'highcharts';
 
 @Component({
   selector: 'app-highchart',
@@ -11,12 +10,24 @@ import { useAnimation } from '@angular/animations';
   styleUrls: ['./highchart.component.sass', './highchart.component.css']
 })
 export class HighchartComponent implements OnInit {
- // series: any[];
-  arr =  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  arr1 =  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
- users = USERS;
-  chart = new Chart( {
-    chart: {
+  // series: any[];
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  arr1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  users = USERS;
+  chart: any;
+  // add point to chart serie
+  constructor(private userService: UserService) {
+   }
+  ngOnInit() {
+    this.initialiseData();
+  }
+  /**
+   * getdata function for complete list
+   */
+  initialiseData() {
+    console.log('hello');
+     this.chart =  new Chart( {
+      chart: {
       type: 'column'
     },
     title: {
@@ -27,59 +38,52 @@ export class HighchartComponent implements OnInit {
     },
     xAxis: {
       categories: [
-          'Jan',
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
-          'Oct',
-          'Nov',
-          'Dec'
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
       ],
       crosshair: true
     },
     yAxis: {
-        min: 0,
-        title: {
-            text: 'Monthly Expenses (INR in thousands)'
-        }
+      min: 0,
+      title: {
+        text: 'Monthly Expenses (INR in thousands)'
+      }
     },
-  plotOptions: {
+    plotOptions: {
       column: {
-          pointPadding: 0.2,
-          borderWidth: 0
+        pointPadding: 0.2,
+        borderWidth: 0
       }
-  },
-    series: [ {
-        name : 'complete',
-        data : this.getdata(),
-        type: undefined
-      },
-      {
-        name : 'uncomplete',
-        data :  this.getdata1(),
-        type: undefined
-      }
-    ],
+    },
+    series: [{
+      name: 'complete',
+      data: this.getdata(),
+      type: undefined
+    },
+    {
+      name: 'uncomplete',
+      data: this.getdata1(),
+      type: undefined
+    }
+    ]
   });
-  // add point to chart serie
-  constructor(private userService: UserService) { }
-
-  ngOnInit() {
   }
-  /**
-   * getdata function for complete list
-   */
   getdata() {
     for (let i = 0; i < USERS.length; i++) {
-        this.arr[USERS[i].month - 1] += 1;
+      this.arr[USERS[i].month - 1] += 1;
     }
     for (let j = 1; j < 12; j++) {
-        this.arr[j] +=  this.arr[j - 1];
+      this.arr[j] += this.arr[j - 1];
     }
     return this.arr;
   }
@@ -88,14 +92,14 @@ export class HighchartComponent implements OnInit {
    */
   getdata1() {
     for (let i = 0; i < USERS.length; i++) {
-        this.arr1[USERS[i].month - 1] += 1;
+      this.arr1[USERS[i].month - 1] += 1;
     }
     for (let j = 1; j < 12; j++) {
-        this.arr1[j] +=  this.arr[j - 1];
+      this.arr1[j] += this.arr[j - 1];
     }
     for (let j = 0; j < 12; j++) {
       this.arr1[j] = USERS.length - this.arr1[j];
-  }
+    }
     return this.arr1;
   }
-    }
+}
