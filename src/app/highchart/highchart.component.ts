@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { UserService } from '../user.service';
 import { USERS } from '../mock-user';
-import * as Highcharts from 'highcharts';
-
+import { CAT} from '../mock-categories';
 @Component({
   selector: 'app-highchart',
   templateUrl: './highchart.component.html',
@@ -15,17 +14,17 @@ export class HighchartComponent implements OnInit {
   arr1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   users = USERS;
   chart: any;
+  cat = CAT;
   // add point to chart serie
   constructor(private userService: UserService) {
    }
   ngOnInit() {
-    this.initialiseData();
+     this.initialiseData();
   }
   /**
    * getdata function for complete list
    */
   initialiseData() {
-    console.log('hello');
      this.chart =  new Chart( {
       chart: {
       type: 'column'
@@ -37,21 +36,9 @@ export class HighchartComponent implements OnInit {
       enabled: false
     },
     xAxis: {
-      categories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
-      ],
-      crosshair: true
+      categories: this.getaxis(),
+      crosshair: true,
+      type: undefined
     },
     yAxis: {
       min: 0,
@@ -101,5 +88,15 @@ export class HighchartComponent implements OnInit {
       this.arr1[j] = USERS.length - this.arr1[j];
     }
     return this.arr1;
+  }
+  /**
+   * get axis value
+   */
+  getaxis() {
+    const list1: string[] = [''];
+  for (let i = 0; i < this.cat.length; i++ ) {
+    list1[i] = this.cat[i].axis;
+  }
+  return list1;
   }
 }
