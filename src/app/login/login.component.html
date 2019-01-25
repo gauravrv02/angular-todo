@@ -18,7 +18,7 @@
                 <td >
                    <mat-form-field class="example-full-width" > 
                      <input matInput placeholder="E-mail" formControlName= "email" autocomplete ="off" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="submitted && loginForm.controls.email.errors" class="invalid-feedback">
                         <!-- <div *ngIf="f.email.errors.required">E-mail is required</div>
                         <div *ngIf="f.email.errors.email">Email must be a valid email address</div> -->
                     </div>
