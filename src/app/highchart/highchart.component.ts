@@ -38,7 +38,6 @@ export class HighchartComponent implements OnInit {
     xAxis: {
       categories: this.getaxis(),
       crosshair: true,
-      type: undefined
     },
     yAxis: {
       min: 0,
