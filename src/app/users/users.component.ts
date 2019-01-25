@@ -93,6 +93,7 @@ export class UsersComponent implements OnInit {
     header.push(...this.data[0]);
     this.formattedData = [];
     for (let i = 1; i < this.data.length; i++) {
+      // extract month from date by moment.js
       const name1: string = String(this.data[i][2]);
       check = moment(this.data[i][4], 'YYYY/MM/DD');
       const comp =  check.format('M');
