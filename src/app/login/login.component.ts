@@ -21,13 +21,11 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
   });
   }
-  get f() { return this.loginForm.controls; }
+   get f() { return this.loginForm.controls; }
 
   onSubmit(): void {
     this.submitted = true;
-        // stop here if form is invalid
         if (this.loginForm.invalid) {
-          // console.log(this.loginForm + 'invalid');
             return;
         }
     }

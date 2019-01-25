@@ -28,24 +28,16 @@ export class UsersComponent implements OnInit {
   }
   //  add element in list
   adduser(newUser: string): void {
-    console.log(newUser);
-    const user = new User();
-    if (!newUser) { return; }
-    user.name = newUser;
-    user.date = new Date();
-    user.checked = false;
-    user.month = Math.floor((Math.random() * 12) + 1);
-    this.users.push(user);
+    this.userService.adduser(newUser);
     // console.log(user.date);
   }
   // remove element from list
   removeuser(user: User, index: number): void {
-    // console.log(user , index);
     if (user.checked === true) {
         user.checked = false;
         this.totalSelected--;
     }
-    this.users.splice(index, 1);
+    this.userService.removeuser(user, index);
   }
   updateTotal(user: User): void {
     if (user.checked === false) {
@@ -97,7 +89,6 @@ export class UsersComponent implements OnInit {
       const name1: string = String(this.data[i][2]);
       check = moment(this.data[i][4], 'YYYY/MM/DD');
       const comp =  check.format('M');
-      console.log(comp);
       // this.users.push({name: name1, checked: false, date: new Date()});
       USERS.push({name: name1, checked: false, date: new Date(), month: comp});
       this.formattedData.push({
@@ -112,11 +103,7 @@ export class UsersComponent implements OnInit {
           'value6': this.data[i][8],
           'value7': this.data[i][9],
       });
-      // for (let j = 1; j < this.formattedData.length; j++) {
-      //       this.users.push(this.formattedData.name[j]);
-      // }
     }
-    // console.log('formatted Data', this.formattedData);
   }
   /**
    * export to json file
