@@ -4,6 +4,7 @@ import { UserService } from '../user.service';
 import { USERS } from '../mock-user';
 import { Router } from '@angular/router';
 import * as XLSX from 'xlsx';
+import moment from 'moment/src/moment';
 type AOA = any[][];
 @Component({
   selector: 'app-users',
@@ -88,11 +89,14 @@ export class UsersComponent implements OnInit {
    */
   formatData() {
     const header = [];
+    let check;
     header.push(...this.data[0]);
     this.formattedData = [];
     for (let i = 1; i < this.data.length; i++) {
       const name1: string = String(this.data[i][2]);
-      const comp = this.data[i][3];
+      check = moment(this.data[i][4], 'YYYY/MM/DD');
+      const comp =  check.format('M');
+      console.log(comp);
       // this.users.push({name: name1, checked: false, date: new Date()});
       USERS.push({name: name1, checked: false, date: new Date(), month: comp});
       this.formattedData.push({
