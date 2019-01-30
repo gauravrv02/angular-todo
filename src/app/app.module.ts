@@ -7,11 +7,15 @@ import { UsersComponent } from './users/users.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import {MatButtonModule, MatProgressSpinnerModule, MatCheckboxModule, MatCardModule,
-  MatBadgeModule, MatFormFieldModule, MatInputModule, MatToolbarModule} from '@angular/material';
+  MatBadgeModule, MatFormFieldModule, MatInputModule, MatToolbarModule, MatDatepickerModule,
+  MatNativeDateModule} from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { HighchartComponent } from './highchart/highchart.component';
-import { ChartModule } from 'angular-highcharts';
-import { UserService } from './user.service';
+import { ChartModule} from 'angular-highcharts';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { UserService } from './services/user.service';
+import * as more from 'highcharts/highcharts-more.src';
+import * as exporting from 'highcharts/modules/exporting.src';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,10 @@ import { UserService } from './user.service';
     MatInputModule,
     MatProgressSpinnerModule,
     ChartModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    HighchartsChartModule
   ],
   exports: [MatButtonModule,
     MatCheckboxModule,
@@ -44,8 +51,11 @@ import { UserService } from './user.service';
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    MatToolbarModule],
-  providers: [],
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
+  providers: [UserService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

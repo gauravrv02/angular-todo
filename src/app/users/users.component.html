@@ -1,62 +1,56 @@
-<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
-<div class ='file'>
-    <div class="upload-btn-wrapper">
-        <!-- <button class="btn">+</button> -->
-        <button mat-fab color="primary">+</button>
-        <input type="file" name (change) = "onFileChange($event)" />
-      </div>
-     
- 
+<!-- <script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script> -->
+<div class='file'>
+  <div class="upload-btn-wrapper">
+      <!-- <button class="btn">+</button> -->
+      <button mat-fab color="primary">+</button>
+      <input type="file" name (change)="onFileChange($event)" />
+  </div>
+
 </div>
-<div class = "container">
-  <div class ="info">
+<div class="container">
+  <div class="info">
       <span class="counter" matBadge="" matBadgeOverlap="false">{{users.length}}</span>
-      <span class ="selected"matBadge="" matBadgeOverlap="false">{{totalSelected}}</span>
-      <span class = "left"matBadge="" matBadgeOverlap="false">{{users.length - totalSelected }}</span>
-  </div>  
-    <br><br><br>
-        <div class = "header" >
-                <mat-form-field class="input">
-                    <input  #username class ="adduser" matInput placeholder = " " (keyup.enter) = "adduser(username.value); username.value=''"/>
-                      <button class ="add" mat-raised-button color= "primary" (click)="adduser(username.value);username.value = ''">
-                        Add
-                      </button>
-                </mat-form-field>
-                <!-- (click) passes input value to add() and then clears the input -->
-              </div>
-    <div class = "list">
-            <!-- <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="10" >
-                    <ng-container *cdkVirtual> -->
-      <mat-card class ="user-list">
-          <mat-checkbox class ="checkall" (change) = "updateall()">select all</mat-checkbox>
-          <mat-card-title class ="head">Users List</mat-card-title>
-          <div class ="lista">
-       <div class = "users" *ngFor="let user of users; let j = index" [class.highlighted]= "user.checked === true" >  
-          <mat-checkbox class ="check" (change) = "updateTotal(user)"></mat-checkbox>   
-        <div class ="index">
-            <!-- <input type ="checkbox"> -->
-            <span style="font-size: 16px;">
-            <i class="fa fa-exclamation-circle color:red"></i>
-          </span>
-          {{j+1}}.
-          <br>
-         <br>
-         <div class ="name" >
-         {{user.name}}</div>
-         </div>
-          <button class="destroy" mat-basic-button color="primary" (click)="removeuser(user,j)">x</button>
+      <span class="selected" matBadge="" matBadgeOverlap="false">{{totalSelected}}</span>
+      <span class="left" matBadge="" matBadgeOverlap="false">{{users.length - totalSelected }}</span>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="header">
+      <mat-form-field class="input">
+          <input #username class="adduser" matInput placeholder=" " (keyup.enter)="adduser(username.value); username.value=''" />
+          <button class="add" mat-raised-button color="primary" (click)="adduser(username.value);username.value = ''">
+              Add
+          </button>
+      </mat-form-field>
+  </div>
+  <div class="list">
+      <mat-card class="user-list">
+          <mat-checkbox class="checkall" (change)="updateall()">select all</mat-checkbox>
+          <mat-card-title class="head">Users List</mat-card-title>
+          <div class="lista">
+              <div class="users" *ngFor="let user of users; let j = index" [class.highlighted]="user.checked === true">
+                  <mat-checkbox class="check" [checked]="user.checked" (change)="updateTotal(j)"></mat-checkbox>
+                  <div class="index">
+                      <span style="font-size: 16px;">
+          <i class="fa fa-exclamation-circle color:red"></i>
+        </span> {{j+1}}.
+                      <br>
+                      <br>
+                      <div class="name">
+                          {{user.name}}.{{user.month}}</div>
+                      </div>
+                        <mat-form-field class ="date">
+                                <input matInput   [matDatepicker]="picker"  placeholder ="Choose a date" (dateChange)="changeMonth( $event, j)" >
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker  ></mat-datepicker>
+                        </mat-form-field>
+                        
+                <div>
+                    <button class="destroy" mat-basic-button color="primary" (click)="removeuser(user,j)">x</button>
+                </div>   
+             </div>
           </div>
-          </div>
-      </mat-card> 
-       <!-- </ng-container>
-    </cdk-virtual-scroll-viewport> -->
-	<!-- <table class="sjs-table">
-		<tr *ngFor="let row of data">
-			<td *ngFor="let val of row">
-				{{val}}
-			</td>
-		</tr>
-	</table> -->
-	<!-- <button (click)="export()">Export!</button> -->
-
-
+      </mat-card>
+      </div>
+      </div>

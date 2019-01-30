@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 import { USERS } from '../mock-user';
 import { Router } from '@angular/router';
 import * as XLSX from 'xlsx';
 import moment from 'moment/src/moment';
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+
+
 type AOA = any[][];
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -13,18 +17,39 @@ type AOA = any[][];
 })
 
 export class UsersComponent implements OnInit {
+   months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
   wb: XLSX.WorkBook = XLSX.read('./username100.xls');
   arr: string[];
-  users = USERS;
-  totalSelected = 0;
-  data: AOA = [[1, 2], [3, 4]];
+  users: any;
+  data: AOA;
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
-
   formattedData: any;
+  totalSelected: number;
+  selectAll: boolean;
+  events: string[] = [];
+
   constructor(private router: Router, private userService: UserService) {
+    this.users = this.userService.userList;
   }
   ngOnInit() {
+    // this.usermonth();
     this.formattedData = {};
+    this.totalSelected = 0;
+    this.selectAll = false;
+
   }
   //  add element in list
   adduser(newUser: string): void {
@@ -35,20 +60,21 @@ export class UsersComponent implements OnInit {
   removeuser(user: User, index: number): void {
     if (user.checked === true) {
         user.checked = false;
-        this.totalSelected--;
+        this.userService.totalSelected--;
     }
     this.userService.removeuser(user, index);
   }
-  updateTotal(user: User): void {
-    if (user.checked === false) {
-      this.totalSelected++;
-      user.checked = true;
+  updateTotal(index: number): void {
+    if (this.userService.userList[index].checked === false) {
+      this.userService.totalSelected ++;
+      this.userService.userList[index].checked = true;
     } else {
-      user.checked = false;
-      this.totalSelected--;
+      this.userService.userList[index].checked = false;
+      this.userService.totalSelected--;
+    }
+    this.totalSelected = this.userService.totalSelected;
     }
     // console.log(user);
-  }
   /**
    * upload file to display in list
    */
@@ -88,9 +114,9 @@ export class UsersComponent implements OnInit {
       // extract month from date by moment.js
       const name1: string = String(this.data[i][2]);
       check = moment(this.data[i][4], 'YYYY/MM/DD');
-      const comp =  check.format('M');
+      const comp =  check.format('MMM');
       // this.users.push({name: name1, checked: false, date: new Date()});
-      USERS.push({name: name1, checked: false, date: new Date(), month: comp});
+      this.userService.userList.push({name: name1, checked: false, date: new Date(), month: comp});
       this.formattedData.push({
           'index': this.data[i][0],
           'title': this.data[i][1],
@@ -119,17 +145,42 @@ export class UsersComponent implements OnInit {
    * check all
    */
   updateall(): void {
-      if (this.totalSelected !== this.users.length) {
-        this.totalSelected = 0;
+      if (this.selectAll === false ) {
+        this.userService.totalSelected = 0;
         for (let i = 0; i < this.users.length; i++) {
-        this.users[i].checked = true;
-        this.totalSelected++;
+        this.userService.userList[i].checked = true;
+        this.userService.totalSelected++;
+        this.selectAll = true;
         }
       } else {
         for (let i = 0; i < this.users.length; i++) {
           this.users[i].checked = false;
-          this.totalSelected--;
+          this.userService.totalSelected--;
+          this.selectAll = false;
         }
     }
+    this.totalSelected = this.userService.totalSelected;
   }
+  /**
+   * Change user month
+   */
+  changeMonth( event: MatDatepickerInputEvent<Date>, index: number): void {
+    event.value = moment(event.value, 'YYYY/MM/DD');
+    let month: any;
+    month = event.value;
+    console.log(month);
+     // this.userService.userList[index].month = event.value.format('MMM');
+      //
+    // console.log(user.month, value);
+     month = month.format('MMM');
+     console.log(month);
+    this.userService.changeMonth(index, month);
+  }
+  /**
+   *  add date event
+   */
+  // addEvent(type: string, event: ) {
+  //   this.events.push(`${type}: ${event.value}`);
+  //   console.log(event.value);
+  // }
 }

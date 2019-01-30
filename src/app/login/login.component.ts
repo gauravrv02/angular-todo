@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
     submitted = false;
      email: string;
      password: string;
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+    constructor(private formBuilder: FormBuilder, private router: Router) {
    }
 
   ngOnInit() {
@@ -21,26 +21,20 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
   });
   }
-
-  onSubmit(): void {
-    this.submitted = true;
-        if (this.loginForm.invalid) {
-            return;
-        }
-    }
   /**
    * login function
    */
   login(): void {
-        this.email = String(this.loginForm.controls.email);
-        this.password = '' + (this.loginForm.controls.password);
+        // this.email = String(this.loginForm.controls.email);
+        // this.password = '' + (this.loginForm.controls.password);
         this.email = this.loginForm.controls['email'].value;
         this.password = this.loginForm.controls['password'].value;
-        this.onSubmit();
+        this.submitted = true;
+        if (this.loginForm.invalid) {
+        return;
+        }
         if ( this.email === 'gaurav@gmail.com' && this.password === 'gaurav1996') {
         this.router.navigate(['user']);
-        } else {
-        alert('Invalid credentials');
-     }
+        }
     }
   }
