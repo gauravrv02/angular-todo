@@ -15,6 +15,7 @@ export class UserService {
 
   constructor() {
     this.userList = USERS;
+    this.intialdate();
     this.totalSelected = 0;
    }
 
@@ -35,7 +36,7 @@ export class UserService {
     return this.userList;
 }
 
-changeMonth(index: number, month: number) {
+changeMonth(index: number, month: Date) {
   // console.log(user.month);
   this.userList[index].month = month;
   console.log(index, this.userList[index].month);
@@ -44,10 +45,11 @@ changeMonth(index: number, month: number) {
 }
  randomDate(start: Date, end: Date) {
    let date: any;
+   let n: number;
     date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
     date = moment(date, 'YYYY/MM/DD');
-    date = date.format('MMM');
-    return date;
+    n = date.format('M');
+      return date;
 }
 updateTotal(index: number) {
   if (this.userList[index].checked === false) {
@@ -58,5 +60,10 @@ updateTotal(index: number) {
     this.totalSelected--;
   }
   return this.totalSelected;
+  }
+  intialdate(): void {
+    for (let i = 0; i < this.userList.length; i++) {
+        this.userList[i].month = this.randomDate(new Date(2018, 1, 1), new Date());
+    }
   }
 }

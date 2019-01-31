@@ -3,9 +3,10 @@ import { User } from '../user';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import * as XLSX from 'xlsx';
+import { USERS } from '../mock-user';
 import moment from 'moment/src/moment';
-import {MatDatepickerInputEvent} from '@angular/material/datepicker';
-import {DatePipe} from '@angular/common';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { DatePipe } from '@angular/common';
 
 type AOA = any[][];
 
@@ -42,8 +43,8 @@ export class UsersComponent implements OnInit {
    date: any;
   constructor(private router: Router, private userService: UserService) {
     this.users = this.userService.userList;
-    console.log(this.date);
   }
+
   ngOnInit() {
     // this.usermonth();
     this.formattedData = {};
@@ -51,7 +52,9 @@ export class UsersComponent implements OnInit {
     this.totalSelected = 0;
     this.date = new Date();
   }
-  //  add element in list
+  /**
+   * add element in list
+   */
   adduser(newUser: string): void {
     this.userService.adduser(newUser);
     // console.log(user.date);
@@ -109,7 +112,7 @@ export class UsersComponent implements OnInit {
       check = moment(this.data[i][4], 'YYYY/MM/DD');
       const comp =  check.format('MMM');
       // this.users.push({name: name1, checked: false, date: new Date()});
-      this.userService.userList.push({name: name1, checked: false, date: new Date(), month: comp});
+      this.userService.userList.push({name: name1, checked: false, date: new Date(), month: check});
       this.formattedData.push({
           'index': this.data[i][0],
           'title': this.data[i][1],
@@ -161,13 +164,11 @@ export class UsersComponent implements OnInit {
     event.value = moment(event.value, 'YYYY/MM/DD');
     let month: any;
     month = event.value;
+    month = month.format('YYYY/MM/DD');
     console.log(month);
-     // this.userService.userList[index].month = event.value.format('MMM');
-      //
-    // console.log(user.month, value);
-     month = month.format('MMM');
-     console.log(month);
     this.userService.changeMonth(index, month);
+  }
+
   }
   /**
    *  add date event
@@ -175,5 +176,4 @@ export class UsersComponent implements OnInit {
   // addEvent(type: string, event: ) {
   //   this.events.push(`${type}: ${event.value}`);
   //   console.log(event.value);
-  // }
-}
+  //
