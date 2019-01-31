@@ -9,9 +9,9 @@
 </div>
 <div class="container">
   <div class="info">
-      <span class="counter" matBadge="" matBadgeOverlap="false">{{users.length}}</span>
-      <span class="selected" matBadge="" matBadgeOverlap="false">{{totalSelected}}</span>
-      <span class="left" matBadge="" matBadgeOverlap="false">{{users.length - totalSelected }}</span>
+      <span class="counter" matBadge="{{users.length}}" matBadgeOverlap="false">Total Users</span>
+      <span class="selected" matBadge="{{totalSelected}}" matBadgeOverlap="false">Selected</span>
+      <span class="left" matBadge="{{users.length - totalSelected }}" matBadgeOverlap="false">Left</span>
   </div>
   <br>
   <br>
@@ -38,12 +38,12 @@
                       <br>
                       <br>
                       <div class="name">
-                          {{user.name}}.{{user.month}}</div>
+                          {{user.name}}</div>
                       </div>
                         <mat-form-field class ="date">
-                                <input matInput   [matDatepicker]="picker"  placeholder ="Choose a date" (dateChange)="changeMonth( $event, j)" >
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker  ></mat-datepicker>
+                                <input matInput  [matDatepicker]="picker" [(ngModel)] = "user.date"  (dateChange)="changeMonth( $event, j)">
+                                <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                         
                 <div>

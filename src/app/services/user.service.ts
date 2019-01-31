@@ -49,4 +49,14 @@ changeMonth(index: number, month: number) {
     date = date.format('MMM');
     return date;
 }
+updateTotal(index: number) {
+  if (this.userList[index].checked === false) {
+    this.totalSelected ++;
+    this.userList[index].checked = true;
+  } else {
+    this.userList[index].checked = false;
+    this.totalSelected--;
+  }
+  return this.totalSelected;
+  }
 }

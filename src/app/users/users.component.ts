@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../services/user.service';
-import { USERS } from '../mock-user';
 import { Router } from '@angular/router';
 import * as XLSX from 'xlsx';
 import moment from 'moment/src/moment';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
-
+import {DatePipe} from '@angular/common';
 
 type AOA = any[][];
 
@@ -40,16 +39,17 @@ export class UsersComponent implements OnInit {
   totalSelected: number;
   selectAll: boolean;
   events: string[] = [];
-
+   date: any;
   constructor(private router: Router, private userService: UserService) {
     this.users = this.userService.userList;
+    console.log(this.date);
   }
   ngOnInit() {
     // this.usermonth();
     this.formattedData = {};
-    this.totalSelected = 0;
     this.selectAll = false;
-
+    this.totalSelected = 0;
+    this.date = new Date();
   }
   //  add element in list
   adduser(newUser: string): void {
@@ -65,14 +65,7 @@ export class UsersComponent implements OnInit {
     this.userService.removeuser(user, index);
   }
   updateTotal(index: number): void {
-    if (this.userService.userList[index].checked === false) {
-      this.userService.totalSelected ++;
-      this.userService.userList[index].checked = true;
-    } else {
-      this.userService.userList[index].checked = false;
-      this.userService.totalSelected--;
-    }
-    this.totalSelected = this.userService.totalSelected;
+    this.totalSelected = this.userService.updateTotal(index);
     }
     // console.log(user);
   /**

@@ -4,7 +4,6 @@ import { UserService } from '../services/user.service';
 import { USERS } from '../mock-user';
 import { CAT } from '../mock-categories';
 import moment from 'moment/src/moment';
-// import Highcharts from 'highcharts';
 import * as Highcharts from 'highcharts';
 declare var require: any;
 require('highcharts/highcharts-more')(Highcharts);
@@ -20,6 +19,7 @@ export class HighchartComponent implements OnInit {
   // series: any[];
   arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   arr1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  arr2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   users = USERS;
   chart: any;
   chart1: any;
@@ -78,7 +78,7 @@ export class HighchartComponent implements OnInit {
    * second chart build;
    */
   secondChart() {
-      console.log('hi');
+    //   console.log('hi');
 const gaugeOptions = {
     chart: {
         type: 'solidgauge'
@@ -162,29 +162,29 @@ const chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOpt
 }));
 
 // The RPM gauge
-const chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
-    yAxis: {
-        min: 0,
-        max: 5,
-        title: {
-            text: 'RPM'
-        }
-    },
+// const chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
+//     yAxis: {
+//         min: 0,
+//         max: 5,
+//         title: {
+//             text: 'RPM'
+//         }
+//     },
 
-    series: [{
-        name: 'RPM',
-        data: [1],
-        dataLabels: {
-            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-                ( 'red' || 'black') + '">{y:.1f}</span><br/>' +
-                   '<span style="font-size:12px;color:silver">* 1000 / min</span></div>'
-        },
-        tooltip: {
-            valueSuffix: ' revolutions/min'
-        }
-    }]
+//     series: [{
+//         name: 'RPM',
+//         data: [1],
+//         dataLabels: {
+//             format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+//                 ( 'red' || 'black') + '">{y:.1f}</span><br/>' +
+//                    '<span style="font-size:12px;color:silver">* 1000 / min</span></div>'
+//         },
+//         tooltip: {
+//             valueSuffix: ' revolutions/min'
+//         }
+//     }]
 
-}));
+// }));
 
 // Bring life to the dials
 setInterval(function () {
@@ -206,17 +206,17 @@ setInterval(function () {
     }
 
     // RPM
-    if (chartRpm) {
-        point = chartRpm.series[0].points[0];
-        inc = Math.random() - 0.5;
-        newVal = point.y + inc;
+    // if (chartRpm) {
+    //     point = chartRpm.series[0].points[0];
+    //     inc = Math.random() - 0.5;
+    //     newVal = point.y + inc;
 
-        if (newVal < 0 || newVal > 5) {
-            newVal = point.y - inc;
-        }
+    //     if (newVal < 0 || newVal > 5) {
+    //         newVal = point.y - inc;
+    //     }
 
-        point.update(newVal);
-    }
+    //     point.update(newVal);
+    // }
 }, 2000);
   }
   /**
@@ -226,8 +226,9 @@ setInterval(function () {
   getdata() {
     let month_number: number;
     for (let i = 0; i < this.userService.userList.length; i++) {
+        month_number = moment().month(this.userService.userList[i].month).format('M');
+        this.arr2[month_number - 1] += 1;
        if (this.userService.userList[i].checked === true) {
-      month_number = moment().month(this.userService.userList[i].month).format('M');
      // console.log(moment().month(this.userService.userList[i].month).format('M'), this.userService.userList.length);
       this.arr[month_number - 1] += 1;
       }
@@ -250,9 +251,9 @@ setInterval(function () {
     //   this.arr1[j] += this.arr[j - 1];
     // }
     for (let j = 0; j < 12; j++) {
-      this.arr1[j] = this.userService.userList.length - this.arr1[j];
+      this.arr2[j] = this.arr2[j] - this.arr1[j];
     }
-    return this.arr1;
+    return this.arr2;
   }
 
   /**
