@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { UserService } from '../services/user.service';
-import { UsersComponent } from './users.component';
 
-describe('UsersComponent', () => {
-  let component: UsersComponent;
-  let fixture: ComponentFixture<UsersComponent>;
+import { HighchartComponent } from './highchart.component';
+
+describe('HighchartComponent', () => {
+  let component: HighchartComponent;
+  let fixture: ComponentFixture<HighchartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
+      declarations: [ HighchartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsersComponent);
+    fixture = TestBed.createComponent(HighchartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
